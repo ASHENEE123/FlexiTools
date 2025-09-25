@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Resize Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #ffffff;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 380px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 24px;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    input[type="number"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+    input[type="number"]:focus,
+    input[type="file"]:focus {
+      border: 1px solid #2575fc;
+      box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
+    }
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Resize Your Image</h2>
+    <form action="/resize" method="POST" enctype="multipart/form-data">
+      <label for="height">Height (px):</label>
+      <input type="number" id="height" name="height" required>
+
+      <label for="width">Width (px):</label>
+      <input type="number" id="width" name="width" required>
+
+      <label for="file">Choose Image:</label>
+      <input type="file" id="file" name="file" accept="image/*" required>
+
+      <button type="submit">Upload & Resize</button>
+    </form>
+  </div>
+</body>
+</html>
+

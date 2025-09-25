@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Format Converter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .upload-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      width: 400px;
+      text-align: center;
+    }
+
+    .upload-container h1 {
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .upload-container p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #e6e6e6;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 0 auto 1rem auto;
+      padding: 10px;
+      border: 2px dashed #fff;
+      border-radius: 10px;
+      background-color: transparent;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      background: #fff;
+      color: #0072ff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    input[type="file"]::-webkit-file-upload-button:hover {
+      background: #0072ff;
+      color: #fff;
+    }
+
+    input[list] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: bold;
+      color: #0072ff;
+    }
+
+    .btn {
+      background: #ff512f;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #dd2476;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-container">
+    <h1>Image Format Converter</h1>
+    <p>Upload an image and choose the format you want to convert it into.</p>
+    <form action="/upload" enctype="multipart/form-data" method="post">
+      <div class="form-group">
+        <input type="file" class="form-control-file" name="uploaded_file" multiple accept="image/*" required>
+        <input list="name" name="brow" placeholder="Select format" required>
+        <datalist id="name">
+          <option>JPEG</option>
+          <option>PNG</option>
+          <option>JPG</option>
+          <option>WEBP</option>
+        </datalist>
+      </div>
+      <input type="submit" value="Convert Image" class="btn">
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlexiTools</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      /* softer gradient: purple to blue instead of red */
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+    .tagline {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #ffe;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    .features {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px 30px;
+      text-align: center;
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+      min-width: 160px;
+      backdrop-filter: blur(6px);
+    }
+    .card:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateY(-6px) scale(1.05);
+    }
+    .card a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>FlexiTools</h1>
+  <div class="tagline">Your all-in-one file utility hub</div>
+  <div class="features">
+    <div class="card"><a href="/crop">✂️ Crop Image</a></div>
+    <div class="card"><a href="/Convert">🖼️ Image Conversion</a></div>
+    <div class="card"><a href="/mergeimg">🧩 Merge Images</a></div>
+    <div class="card"><a href="/merge">📚 Merge PDFs</a></div>
+    <div class="card"><a href="/ocr">🔎 OCR (Extract Text)</a></div>
+  </div>
+</body>
+</html>
