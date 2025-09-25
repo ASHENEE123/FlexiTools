@@ -101,5 +101,10 @@ The server will run on the port specified in `main.js` (default: 3000).
 - **Port conflicts**: Change the port in `main.js`.
 - **Template errors**: Check EJS syntax.
 
+ ##Screenshots
+ ![Screenshot Description](screenshot1.png)
+![Another Screenshot](screenshot2.png)
+
+
 ---
 MORE Features To Be Come THIS PROJECT IS DEVELOPED FOR DAILY USE CASES AND TO CREATE OUR OWN PLATFROM WHERE WE CAN DO THIS STUFF AND IS STILL UNDER DEVELOPMENT FOR NEW UPDATES. 
