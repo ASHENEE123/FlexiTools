@@ -101,8 +101,13 @@ The server will run on the port specified in `main.js` (default: 3000).
 - **Port conflicts**: Change the port in `main.js`.
 - **Template errors**: Check EJS syntax.
 
-
-
+##SCREENSHOTS
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
+![imagealt](https://github.com/ASHENEE123/FlexiTools/blob/3145e2e4ff1961f5de9771fdd1b1160f32581f71/Screenshot%202025-09-25%20135740.png)
 
 ---
 MORE Features To Be Come THIS PROJECT IS DEVELOPED FOR DAILY USE CASES AND TO CREATE OUR OWN PLATFROM WHERE WE CAN DO THIS STUFF AND IS STILL UNDER DEVELOPMENT FOR NEW UPDATES. 
