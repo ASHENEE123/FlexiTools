@@ -3,7 +3,7 @@ const path = require("path");
 const app = ser();
 const errhandler=(err,req,res,next)=>{
  console.log(err.stack)
- res.status(500).json("server Error")
+ res.status(500).json("server Error File Not Processed")
 }
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,"templates"));
