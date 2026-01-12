@@ -6,10 +6,12 @@ let date=new Date()
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:10*1024*1024},fileFilter:(req,file,cb)=>{
     console.log(file.mimetype)
     if(file.mimetype.startsWith("image/")){
+        console.log("file Accepted")
         cb(null,true)
     }
     else{
-        cb(null,false)
+        console.log("file not supported")
+        cb(new Error("File Not Supported"),false)
     }
 }})
 
