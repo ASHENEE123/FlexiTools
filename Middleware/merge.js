@@ -11,7 +11,7 @@ const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:10*1024*102
       }
       else{
         console.log("file not  supported")
-        cb(new Error("error occured at file"),false);
+        cb(new Error("file not supported"),false);
       }
     }
     catch(err){
