@@ -111,54 +111,57 @@
     <h1>Merge PDF Files</h1>
     <p>Upload multiple PDF files and combine them into a single document.</p>
 
-    <form id="mergeForm" action="/com" method="POST" enctype="multipart/form-data" novalidate>
-      <div class="form-group">
-        <input
-          type="file"
-          id="pdfFiles"
-          name="uploaded_file"
-          accept="application/pdf"
-          multiple
-        >
-      </div>
-
-      <input type="submit" value="Merge PDFs" class="btn">
-    </form>
+   <form id="mergeForm" action="/com" method="POST" enctype="multipart/form-data" novalidate>
+  <div class="form-group">
+    <input
+      type="file"
+      id="pdfFiles"
+      name="uploaded_file"
+      accept="application/pdf"
+      multiple
+    >
   </div>
 
-  <script>
-    const form = document.getElementById('mergeForm');
-    const fileInput = document.getElementById('pdfFiles');
+  <input type="submit" value="Merge PDFs" class="btn">
+</form>
 
-    const allowedType = 'application/pdf';
+<script>
+  const form = document.getElementById('mergeForm');
+  const fileInput = document.getElementById('pdfFiles');
+  const allowedType = 'application/pdf';
 
-    // File validation
-    fileInput.addEventListener('change', () => {
-      const files = fileInput.files;
+  // Validate files on selection
+  fileInput.addEventListener('change', () => {
+    const files = fileInput.files;
 
-      if (!files.length) {
+    if (!files.length) return;
+
+    for (const file of files) {
+      if (file.type !== allowedType) {
+        alert('Only PDF files are allowed.');
+        fileInput.value = '';
         return;
       }
+    }
+  });
 
-      for (let file of files) {
-        if (file.type !== allowedType) {
-          alert('File not supported');
-          fileInput.value = '';
-          return;
-        }
-      }
-    });
+  // Final validation gate before backend call
+  form.addEventListener('submit', (e) => {
+    const files = fileInput.files;
 
-    // Form validation
-    form.addEventListener('submit', (e) => {
-      const files = fileInput.files;
+    if (!files.length) {
+      e.preventDefault();
+      alert('Please add File');
+      return;
+    }
 
-      if (!files.length) {
+    for (const file of files) {
+      if (file.type !== allowedType) {
         e.preventDefault();
-        alert('Please add file in inputs.');
+        alert('Only PDF files are allowed.');
+        fileInput.value = '';
         return;
       }
-    });
-  </script>
-</body>
-</html>
+    }
+  });
+</script>
