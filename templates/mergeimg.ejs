@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Merger</title>
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,8 +12,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 16px;
       color: #fff;
     }
 
@@ -23,6 +25,7 @@
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
       width: 380px;
+      max-width: 100%;
       text-align: center;
     }
 
@@ -30,7 +33,6 @@
       margin-bottom: 0.5rem;
       font-size: 1.8rem;
       font-weight: bold;
-      color: #fff;
     }
 
     .upload-container p {
@@ -46,7 +48,7 @@
 
     input[type="file"] {
       display: block;
-      margin: 0 auto;
+      width: 100%;
       padding: 10px;
       border: 2px dashed #fff;
       border-radius: 10px;
@@ -86,19 +88,83 @@
       background: #ff7b35;
       transform: scale(1.05);
     }
+
+    /* Mobile support */
+    @media (max-width: 480px) {
+      .upload-container {
+        padding: 1.8rem;
+      }
+
+      .upload-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="upload-container">
     <h1>Image Merger</h1>
     <p>Upload multiple images and merge them into a single output file.</p>
-    <form action="/show" enctype="multipart/form-data" method="post">
+
+    <form id="mergeImageForm" action="/show" method="POST" enctype="multipart/form-data" novalidate>
       <div class="form-group">
-        <input type="file" class="form-control-file" name="uploaded_file" multiple accept="image/*">
+        <input
+          type="file"
+          id="imageFiles"
+          name="uploaded_file"
+          accept="image/*"
+          multiple
+        >
       </div>
+
       <input type="submit" value="Merge Images" class="btn">
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById('mergeImageForm');
+    const fileInput = document.getElementById('imageFiles');
+
+    const allowedMimeTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+      'image/webp',
+      'image/gif'
+    ];
+
+    // File validation
+    fileInput.addEventListener('change', () => {
+      const files = fileInput.files;
+
+      if (!files.length) {
+        return;
+      }
+
+      for (let file of files) {
+        if (!allowedMimeTypes.includes(file.type)) {
+          alert('File not supported');
+          fileInput.value = '';
+          return;
+        }
+      }
+    });
+
+    // Form validation
+    form.addEventListener('submit', (e) => {
+      const files = fileInput.files;
+
+      if (!files.length) {
+        e.preventDefault();
+        alert('Please add file in inputs.');
+        return;
+      }
+    });
+  </script>
 </body>
 </html>
-
