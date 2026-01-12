@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Image Resize Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,27 +12,33 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 16px;
     }
+
     .container {
       background: #ffffff;
-      padding: 25px 35px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 26px 36px;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
       width: 380px;
+      max-width: 100%;
       animation: fadeIn 0.6s ease-in-out;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
+      from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
     h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #444;
       font-size: 24px;
     }
+
     label {
       font-weight: 600;
       display: block;
@@ -38,6 +46,7 @@
       margin-bottom: 6px;
       color: #333;
     }
+
     input[type="number"],
     input[type="file"] {
       width: 100%;
@@ -49,50 +58,99 @@
       font-size: 14px;
       transition: border 0.3s, box-shadow 0.3s;
     }
-    input[type="number"]:focus,
-    input[type="file"]:focus {
-      border: 1px solid #2575fc;
+
+    input:focus {
+      border-color: #2575fc;
       box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
     }
+
     button {
-      margin-top: 10px;
+      margin-top: 12px;
       width: 100%;
       padding: 12px;
       background: linear-gradient(135deg, #2575fc, #6a11cb);
-      color: white;
+      color: #ffffff;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 600;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.3s;
     }
+
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
     }
-    button:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 15px;
+        padding: 11px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>Resize Your Image</h2>
-    <form action="/resize" method="POST" enctype="multipart/form-data">
-      <label for="height">Height (px):</label>
-      <input type="number" id="height" name="height" required>
 
-      <label for="width">Width (px):</label>
-      <input type="number" id="width" name="width" required>
+    <form id="resizeForm" action="/resize" method="POST" enctype="multipart/form-data" novalidate>
+      <label for="height">Height (px)</label>
+      <input type="number" id="height" name="height" min="1">
 
-      <label for="file">Choose Image:</label>
-      <input type="file" id="file" name="file" accept="image/*" required>
+      <label for="width">Width (px)</label>
+      <input type="number" id="width" name="width" min="1">
+
+      <label for="file">Choose Image</label>
+      <input type="file" id="file" name="file" accept="image/*">
 
       <button type="submit">Upload & Resize</button>
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById('resizeForm');
+    const fileInput = document.getElementById('file');
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+
+      if (file && !allowedTypes.includes(file.type)) {
+        alert('File not supported.');
+        fileInput.value = '';
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      const height = document.getElementById('height').value.trim();
+      const width = document.getElementById('width').value.trim();
+      const file = fileInput.files[0];
+
+      if (!height || !width || !file) {
+        e.preventDefault();
+        alert('Please fill the inputs.');
+        return;
+      }
+
+      if (!allowedTypes.includes(file.type)) {
+        e.preventDefault();
+        alert('Please add File.');
+        fileInput.value = '';
+        return;
+      }
+    });
+  </script>
 </body>
 </html>
-
