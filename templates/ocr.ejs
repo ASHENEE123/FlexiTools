@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OCR – Extract Text from Images</title>
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,8 +12,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 16px;
       color: #fff;
     }
 
@@ -23,6 +25,7 @@
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
       width: 380px;
+      max-width: 100%;
       text-align: center;
     }
 
@@ -30,7 +33,6 @@
       margin-bottom: 0.5rem;
       font-size: 1.8rem;
       font-weight: bold;
-      color: #fff;
     }
 
     .upload-container p {
@@ -46,7 +48,7 @@
 
     input[type="file"] {
       display: block;
-      margin: 0 auto;
+      width: 100%;
       padding: 10px;
       border: 2px dashed #fff;
       border-radius: 10px;
@@ -86,18 +88,85 @@
       background: #ff5277;
       transform: scale(1.05);
     }
+
+    /* Mobile support */
+    @media (max-width: 480px) {
+      .upload-container {
+        padding: 1.8rem;
+      }
+
+      .upload-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="upload-container">
     <h1>OCR Text Extractor</h1>
     <p>Upload one or more images, and our OCR engine will extract the text for you.</p>
-    <form action="/image" enctype="multipart/form-data" method="post">
+
+    <form id="ocrForm" action="/image" method="POST" enctype="multipart/form-data" novalidate>
       <div class="form-group">
-        <input type="file" class="form-control-file" name="uploaded_file" multiple accept="image/*">
+        <input
+          type="file"
+          id="ocrFiles"
+          name="uploaded_file"
+          accept="image/*"
+          multiple
+        >
       </div>
+
       <input type="submit" value="Extract Text" class="btn">
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById('ocrForm');
+    const fileInput = document.getElementById('ocrFiles');
+
+    const allowedMimeTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+      'image/webp',
+      'image/gif',
+      'image/bmp',
+      'image/tiff'
+    ];
+
+    // File validation
+    fileInput.addEventListener('change', () => {
+      const files = fileInput.files;
+
+      if (!files.length) {
+        return;
+      }
+
+      for (let file of files) {
+        if (!allowedMimeTypes.includes(file.type)) {
+          alert('File not supported.');
+          fileInput.value = '';
+          return;
+        }
+      }
+    });
+
+    // Form validation
+    form.addEventListener('submit', (e) => {
+      const files = fileInput.files;
+
+      if (!files.length) {
+        e.preventDefault();
+        alert('Please add file in inputs.');
+        return;
+      }
+    });
+  </script>
 </body>
 </html>
