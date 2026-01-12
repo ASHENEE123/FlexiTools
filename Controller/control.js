@@ -58,7 +58,7 @@ const showocr=(req,res)=>{
             console.log("file sent successfully")
         }
      })})
-     res.set("Content-Type","text/html").send(`<h1>${req.showdata}</h1>`)
+     res.set("Content-Type","text/html").send(`<p><h2>${req.showdata}</h2></p>`)
 }
 
 
