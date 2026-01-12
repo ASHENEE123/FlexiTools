@@ -18,7 +18,8 @@ const upload=multer({storage:storage,limits:5*1024*1024,fileFilter:(req,file,cb)
         cb(null,true)
     }
     else{
-        cb(err,false)
+        console.log("file not supported");
+        cb(new Error("file not Supported"),false)
     }
 }})
 async function ocr(req,res,next){
