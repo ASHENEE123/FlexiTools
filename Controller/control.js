@@ -37,7 +37,7 @@ const imgdown=(req,res)=>{
         else{
             setTimeout(()=>{
             fs.unlinkSync(comppath)
-            console.log("file deleted")},10000)
+            console.log("file deleted")},60000)
         }
 
     })
@@ -78,7 +78,7 @@ res.on("finish",(err)=>{
         else{
             setTimeout(()=>{
             fs.unlinkSync(compath)
-            console.log("file deleted")},10000)
+            console.log("file deleted")},60000)
         }
 
     })
@@ -101,7 +101,7 @@ res.on("finish",(err)=>{
         else{
             setTimeout(()=>{
             fs.unlinkSync(loc)
-            console.log("file deleted")},10000)
+            console.log("file deleted")},60000)
         }
 
     })
@@ -125,7 +125,7 @@ const cropshow=(req,res)=>{
         else{
             setTimeout(()=>{
             fs.unlinkSync(compath)
-            console.log("file deleted")},10000)
+            console.log("file deleted")},60000)
         }
 
     })
