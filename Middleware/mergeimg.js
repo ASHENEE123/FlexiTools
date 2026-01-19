@@ -4,14 +4,17 @@ const multer=require("multer")
 const rout=require("path")
 let date=new Date()
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:10*1024*1024},fileFilter:(req,file,cb)=>{
-    console.log(file.mimetype)
     if(file.mimetype.startsWith("image/")){
         console.log("file Accepted")
         cb(null,true)
     }
     else{
+<<<<<<< HEAD
         console.log("file not supported")
         cb(new Error("File Not Supported"),false)
+=======
+        cb(new Error("file not valid"),false)
+>>>>>>> 54eff79 (new updates with proper security handling)
     }
 }})
 

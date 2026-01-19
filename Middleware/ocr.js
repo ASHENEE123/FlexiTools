@@ -2,7 +2,6 @@ const exp=require("express")
 const tesseract=require("tesseract.js")
 const multer=require("multer")
 const path=require("path")
-const fs=require("fs").promises
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
         const dest=path.join(__dirname,"destination")
@@ -30,7 +29,6 @@ async function ocr(req,res,next){
      console.log(event)
    }})
    req.text=replay.data.text
-   req.name=path;
    next();}
    catch(err){
     console.log("err occured")

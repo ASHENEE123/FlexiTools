@@ -20,7 +20,7 @@ async function resize(req,res,next){
         const height=parseInt(req.body.height,10)
         const width=parseInt(req.body.width,10)
         await sharp(req.file.buffer).resize({height:height,width:width}).toFile(dest)
-        req.data=file1;
+        req.data=file1
         next();
 }
 catch(err){
