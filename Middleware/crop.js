@@ -3,7 +3,7 @@ const sharp=require('sharp')
 const multer=require("multer")
 const rout=require("path")
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:5*1024*1024},fileFilter:(req,file,cb)=>{
-    if(file.mimetype.startsWith("image/")){
+    if(file & file.mimetype.startsWith("image/")){
         console.log("file accepted")
         cb(null,true)
     }
