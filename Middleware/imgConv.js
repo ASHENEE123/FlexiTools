@@ -22,8 +22,6 @@ async function meta(req,res,next){
     try{
     await sharp(req.file.buffer).toFormat(convert).toFile(dest)
     req.name=filname(req.file.originalname,convert);
-    console.log(req.file.originalname)
-    console.log(req.name)
     next();
 }
     catch(err){
